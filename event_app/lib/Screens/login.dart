@@ -1,20 +1,12 @@
-
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
+import 'package:event_app/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+// ignore: depend_on_referenced_packages
 import 'package:myapp/utils.dart';
 
-class login extends StatefulWidget {
-  const login({super.key});
-
-  @override
-  State<login> createState() => _loginState();
-}
-
-class _loginState extends State<login> {
+class Scene extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 500;
@@ -187,6 +179,6 @@ class _loginState extends State<login> {
           ],
         ),
       ),
-    );
+          );
   }
 }
