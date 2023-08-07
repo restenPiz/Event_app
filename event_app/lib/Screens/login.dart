@@ -1,12 +1,10 @@
-import 'package:event_app/utils.dart';
+import '../utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
 import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
-// ignore: depend_on_referenced_packages
-import 'package:myapp/utils.dart';
 
 class Scene extends StatelessWidget {
+  const Scene({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 500;
