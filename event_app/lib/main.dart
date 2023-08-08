@@ -11,7 +11,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ignore: prefer_const_constructors
-    //?Estou referenciando a minha widget do index que contem todo o conteudo
+    //?Referenciando a minha widget do index que contem todo o conteudo
     return index();
   }
 }

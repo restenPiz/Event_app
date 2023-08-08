@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
@@ -11,7 +10,10 @@ class index extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(title: Text('Event-app'),),
+        appBar: AppBar(
+          title: Text('Event-app'),
+          backgroundColor: Colors.amberAccent,
+          ),
         body: Center(
           child: Card(
             elevation: 4,
