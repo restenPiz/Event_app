@@ -60,17 +60,17 @@ class index extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 16),
-              FloatingActionButton(
-                onPressed: () {
-                  // Lógica do botão flutuante
-                },
-                child: Icon(Icons.add),
-                backgroundColor: Colors.yellow,
-              ),
             ],
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            // Lógica do botão flutuante
+          },
+          child: Icon(Icons.add),
+          backgroundColor: Colors.green,
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
     );
   }
