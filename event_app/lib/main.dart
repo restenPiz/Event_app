@@ -9,13 +9,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      
-      //*Start the content of my app
-
-
-      //?End of my application
-
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Event - App'),
+        ),
+        body: Center(child: Text('Ola Mundo')),
+      ),
     );
   }
 }
