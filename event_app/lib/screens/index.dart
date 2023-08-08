@@ -35,6 +35,7 @@ class index extends StatelessWidget {
                     ButtonBar(
                       alignment: MainAxisAlignment.end, // Alinhar à esquerda
                       children: [
+                        //*Inicio do butao responsavel por editar
                         Align(
                           alignment: Alignment.centerLeft, // Alinhar o ícone à esquerda
                           child: IconButton(
@@ -45,6 +46,7 @@ class index extends StatelessWidget {
                             },
                           ),
                         ),
+                        //*Inicio do butao responsavel por eliminar
                         Align(
                           alignment: Alignment.topRight, // Alinhar o ícone à esquerda
                           child: IconButton(
@@ -63,10 +65,12 @@ class index extends StatelessWidget {
             ],
           ),
         ),
+        //*Adicionando o butao responsavel por fazer criar o evento
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             // Lógica do botão flutuante
           },
+          // ignore: sort_child_properties_last
           child: Icon(Icons.add),
           backgroundColor: Colors.yellow,
         ),
