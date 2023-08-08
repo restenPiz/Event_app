@@ -13,7 +13,18 @@ class index extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(title: Text('Event-app'),),
         body: Center(
-          child: Text('Ola Mundo'),
+          child: Card(
+            elevation: 4,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                ListTile(
+                  title: Text('Mauro Peniel'),
+                  subtitle: Text('Eu sou mauro peniel'),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
