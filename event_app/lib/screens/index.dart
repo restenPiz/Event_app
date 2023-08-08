@@ -68,33 +68,11 @@ class index extends StatelessWidget {
         //*Adicionando o butao responsavel por fazer criar o evento
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            showModalBottomSheet(
-              context: context,
-              builder: (context) {
-                return Wrap(
-                  children: [
-                    ListTile(
-                      leading: Icon(Icons.share),
-                      title: Text('Share'),
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.copy),
-                      title: Text('Copy Link'),
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.edit),
-                      title: Text('Edit'),
-                    ),
-                  ],
-                );
-              },
-            );
+            
           },
-          // ignore: sort_child_properties_last
           child: Icon(Icons.add),
           backgroundColor: Colors.yellow,
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
     );
   }
