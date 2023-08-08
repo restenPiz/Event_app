@@ -1,3 +1,4 @@
+import 'package:event_app/screens/index.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,14 +10,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Event - App'),
-        ),
-        body: Center(child: Text('Ola Mundo')),
-      ),
-    );
+    return index();
   }
 }
