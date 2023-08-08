@@ -20,6 +20,10 @@ class index extends StatelessWidget {
             children: [
               Card(
                 elevation: 4,
+                shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0), // Borda arredondada
+                ),
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20), // Margem
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   // ignore: prefer_const_literals_to_create_immutables
@@ -44,19 +48,6 @@ class index extends StatelessWidget {
                           ),
                         ],
                       ),
-                  ],
-                ),
-              ),
-              Card(
-                elevation: 4,
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  // ignore: prefer_const_literals_to_create_immutables
-                  children: [
-                    ListTile(
-                      title: Text('Mauro Peniel'),
-                      subtitle: Text('Eu sou mauro peniel'),
-                    ),
                   ],
                 ),
               ),
