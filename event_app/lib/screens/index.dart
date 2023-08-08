@@ -71,34 +71,21 @@ class index extends StatelessWidget {
             showModalBottomSheet(
               context: context,
               builder: (context) {
-                return Container(
-                  padding: EdgeInsets.all(20),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'Novo Evento',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
-                      ),
-                      TextFormField(
-                        decoration: InputDecoration(labelText: 'Nome do Evento'),
-                      ),
-                      TextFormField(
-                        decoration: InputDecoration(labelText: 'Descrição'),
-                      ),
-                      SizedBox(height: 20),
-                      ElevatedButton(
-                        onPressed: () {
-                          // Lógica para salvar o evento
-                          Navigator.pop(context); // Fechar o modal
-                        },
-                        child: Text('Salvar'),
-                      ),
-                    ],
-                  ),
+                return Wrap(
+                  children: [
+                    ListTile(
+                      leading: Icon(Icons.share),
+                      title: Text('Share'),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.copy),
+                      title: Text('Copy Link'),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.edit),
+                      title: Text('Edit'),
+                    ),
+                  ],
                 );
               },
             );
