@@ -68,7 +68,40 @@ class index extends StatelessWidget {
         //*Adicionando o butao responsavel por fazer criar o evento
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            // Lógica do botão flutuante
+            showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return Container(
+                  padding: EdgeInsets.all(20),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'Novo Evento',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(labelText: 'Nome do Evento'),
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(labelText: 'Descrição'),
+                      ),
+                      SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: () {
+                          // Lógica para salvar o evento
+                          Navigator.pop(context); // Fechar o modal
+                        },
+                        child: Text('Salvar'),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            );
           },
           // ignore: sort_child_properties_last
           child: Icon(Icons.add),
