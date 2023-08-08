@@ -33,23 +33,40 @@ class index extends StatelessWidget {
                       subtitle: Text('Eu sou mauro peniel'),
                     ),
                     ButtonBar(
-                        children: [
-                          IconButton(
+                      alignment: MainAxisAlignment.end, // Alinhar à esquerda
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft, // Alinhar o ícone à esquerda
+                          child: IconButton(
                             icon: Icon(Icons.edit),
+                            color: Colors.blue,
                             onPressed: () {
-                            
+                              // Lógica de edição
                             },
                           ),
-                          IconButton(
+                        ),
+                        Align(
+                          alignment: Alignment.topRight, // Alinhar o ícone à esquerda
+                          child: IconButton(
                             icon: Icon(Icons.delete),
+                            color: Colors.red,
                             onPressed: () {
-                            
+                              // Lógica de exclusão
                             },
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
+              ),
+              SizedBox(height: 16),
+              FloatingActionButton(
+                onPressed: () {
+                  // Lógica do botão flutuante
+                },
+                child: Icon(Icons.add),
+                backgroundColor: Colors.yellow,
               ),
             ],
           ),
