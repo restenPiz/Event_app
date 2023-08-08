@@ -1,6 +1,8 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
+// ignore: camel_case_types
 class index extends StatelessWidget {
   const index({super.key});
 
