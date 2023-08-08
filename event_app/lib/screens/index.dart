@@ -68,7 +68,7 @@ class index extends StatelessWidget {
             // Lógica do botão flutuante
           },
           child: Icon(Icons.add),
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.yellow,
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
