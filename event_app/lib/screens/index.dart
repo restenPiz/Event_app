@@ -28,6 +28,22 @@ class index extends StatelessWidget {
                       title: Text('Mauro Peniel'),
                       subtitle: Text('Eu sou mauro peniel'),
                     ),
+                    ButtonBar(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.edit),
+                            onPressed: () {
+                            
+                            },
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.delete),
+                            onPressed: () {
+                            
+                            },
+                          ),
+                        ],
+                      ),
                   ],
                 ),
               ),
