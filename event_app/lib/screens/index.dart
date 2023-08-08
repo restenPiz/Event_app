@@ -15,6 +15,7 @@ class index extends StatelessWidget {
           backgroundColor: Colors.amberAccent,
           ),
         body: Center(
+          //*Inicio da coluna que e responsavel por colocar todas as cards
           child: Column(
             children: [
               Card(
