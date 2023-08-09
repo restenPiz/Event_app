@@ -11,21 +11,39 @@ class Counter extends StatefulWidget {
 
 class _CounterState extends State<Counter> {
   
+  //*Inicio do metodo responsavel por printar o modal
   void _openModal(BuildContext context) {
-    showDialog(
+    showModalBottomSheet(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Modal Title'),
-          content: Text('This is a modal content.'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Close'),
-            ),
-          ],
+      builder: (context) {
+        return Container(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Novo Evento',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Nome do Evento'),
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Descrição'),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  // Lógica para salvar o evento
+                  Navigator.pop(context); // Fechar o modal
+                },
+                child: Text('Salvar'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -102,6 +120,7 @@ class _CounterState extends State<Counter> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             
+            //!Inicio do metodo responsavel por abrir o modal
           _openModal(context);      
 
           },

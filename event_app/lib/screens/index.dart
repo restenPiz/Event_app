@@ -1,96 +1,15 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-import 'package:event_app/screens/addEvent.dart';
 import 'package:flutter/material.dart';
 
-// ignore: camel_case_types
-class index extends StatelessWidget {
+class index extends StatefulWidget {
   const index({super.key});
 
   @override
+  State<index> createState() => _indexState();
+}
+
+class _indexState extends State<index> {
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Event-app'),
-          backgroundColor: Colors.amberAccent,
-          ),
-        body: Center(
-          //*Inicio da coluna que e responsavel por colocar todas as cards
-          child: Column(
-            children: [
-              //*Inicio da card do aplicativo
-              Card(
-                elevation: 4,
-                shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0), // Borda arredondada
-                ),
-                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20), // Margem
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  // ignore: prefer_const_literals_to_create_immutables
-                  children: [
-                    ListTile(
-                      title: Text('Mauro Peniel'),
-                      subtitle: Text('Eu sou mauro peniel'),
-                    ),
-
-                    //*Inicio do button Bar responsavel por Editar e Eliminar
-
-                    ButtonBar(
-                      alignment: MainAxisAlignment.end, // Alinhar à esquerda
-                      children: [
-                        //*Inicio do butao responsavel por editar
-                        Align(
-                          alignment: Alignment.centerLeft, // Alinhar o ícone à esquerda
-                          child: IconButton(
-                            icon: Icon(Icons.edit),
-                            color: Colors.blue,
-                            onPressed: () {
-
-                              //!Inicio do link de redirecionamento
-                              Text('Ola Mundo');
-
-                            },
-                          ),
-                        ),
-                        //*Inicio do butao responsavel por eliminar
-                        Align(
-                          alignment: Alignment.topRight, // Alinhar o ícone à esquerda
-                          child: IconButton(
-                            icon: Icon(Icons.delete), //? Icone
-                            color: Colors.red,
-                            onPressed: () {
-                              
-                              //!Inicio do link de redirecionamento
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => addEvent()),
-                              );
-
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-        //*Adicionando o butao responsavel por fazer criar o evento
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            
-            //!Inicio do link de redirecionamento
-            
-
-          },
-          child: Icon(Icons.add),
-          backgroundColor: Colors.yellow,
-        ),
-      ),
-    );
+    return Container();
   }
 }
