@@ -74,7 +74,7 @@ class index extends StatelessWidget {
             //!Inicio do link de redirecionamenot
             Navigator.of(context).pop();
             addEvent();
-            
+
           },
           child: Icon(Icons.add),
           backgroundColor: Colors.yellow,
