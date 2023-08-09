@@ -63,6 +63,10 @@ class index extends StatelessWidget {
                             onPressed: () {
                               
                               //!Inicio do link de redirecionamento
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => addEvent()),
+                              );
 
                             },
                           ),
