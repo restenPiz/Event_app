@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:event_app/helpers/database_helper.dart';
+import 'package:event_app/models/event.dart';
 import 'package:flutter/material.dart';
 
 class Counter extends StatefulWidget {
@@ -42,10 +44,7 @@ class _CounterState extends State<Counter> {
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
-                  // Lógica para salvar o evento
-                  Navigator.pop(context); // Fechar o modal
-                },
+                onPressed: ()=>_addEvent(context),
                 child: Text('Salvar'),
               ),
             ],
@@ -102,6 +101,18 @@ class _CounterState extends State<Counter> {
       },
     );
   } 
+
+  //!Inicio do metodo responsavel por adicionar os dados
+  void _addEvent(BuildContext context) async {
+
+    if(_nomeController.text.trim().isEmpty) return;
+
+    Event newEvent=Event( nome: _nomeController.text, descricao: _descricaoController.text, id: 1);
+    await DatabaseHelper.instance.insertEvent(newEvent);
+
+    Navigator.pop(context);
+
+  }
 
   @override
   Widget build(BuildContext context) {
