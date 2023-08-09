@@ -49,6 +49,28 @@ class _CounterState extends State<Counter> {
     );
   }
 
+  //*Inicio do modal responsavel por editar os dados
+  // ignore: unused_element
+  void _openEditModal(BuildContext context){
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Modal Title'),
+          content: Text('This is a modal content.'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
+  } 
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -92,7 +114,7 @@ class _CounterState extends State<Counter> {
                             onPressed: () {
 
                               //!Inicio do link de redirecionamento
-                              Text('Ola Mundo');
+                              _openEditModal(context);
 
                             },
                           ),
@@ -105,6 +127,8 @@ class _CounterState extends State<Counter> {
                             color: Colors.red,
                             onPressed: () {
                               
+                              //!Inicio do link de redirecionamento
+
                             },
                           ),
                         ),
