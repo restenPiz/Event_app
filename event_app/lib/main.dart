@@ -33,9 +33,11 @@ class _CounterState extends State<Counter> {
                 ),
               ),
               TextFormField(
+                controller: _nomeController,
                 decoration: InputDecoration(labelText: 'Nome do Evento'),
               ),
               TextFormField(
+                controller: _descricaoController,
                 decoration: InputDecoration(labelText: 'Descrição do Evento'),
               ),
               SizedBox(height: 20),
