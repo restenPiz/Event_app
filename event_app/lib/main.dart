@@ -70,12 +70,14 @@ class _CounterState extends State<Counter> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 TextField(
+                  controller: _nomeController,
                   decoration: InputDecoration(labelText: 'Nome do Evento'),
                 ),
                 Container(
                   height: 20,
                 ),
                 TextField(
+                  controller: _descricaoController,
                   decoration: InputDecoration(labelText: 'Descrição do Evento'),
                 ),
               ],
