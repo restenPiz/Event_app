@@ -58,7 +58,7 @@ class index extends StatelessWidget {
                         Align(
                           alignment: Alignment.topRight, // Alinhar o ícone à esquerda
                           child: IconButton(
-                            icon: Icon(Icons.delete),
+                            icon: Icon(Icons.delete), //? Icone
                             color: Colors.red,
                             onPressed: () {
                               
