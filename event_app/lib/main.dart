@@ -32,7 +32,7 @@ class _CounterState extends State<Counter> {
                 decoration: InputDecoration(labelText: 'Nome do Evento'),
               ),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Descrição'),
+                decoration: InputDecoration(labelText: 'Descrição do Evento'),
               ),
               SizedBox(height: 20),
               ElevatedButton(
@@ -70,7 +70,7 @@ class _CounterState extends State<Counter> {
                   height: 20,
                 ),
                 TextField(
-                  decoration: InputDecoration(labelText: 'Descricao do Evento'),
+                  decoration: InputDecoration(labelText: 'Descrição do Evento'),
                 ),
               ],
             ),
@@ -80,14 +80,14 @@ class _CounterState extends State<Counter> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Close'),
+              child: Text('Fechar'),
             ),
             TextButton(
               onPressed: () {
                 // Process and save data
                 Navigator.of(context).pop();
               },
-              child: Text('Save'),
+              child: Text('Adicionar'),
             ),
           ],
         );
