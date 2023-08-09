@@ -35,8 +35,8 @@ class index extends StatelessWidget {
                       subtitle: Text('Eu sou mauro peniel'),
                     ),
 
-                    //?Inicio do button Bar responsavel por Editar e Eliminar
-                    
+                    //*Inicio do button Bar responsavel por Editar e Eliminar
+
                     ButtonBar(
                       alignment: MainAxisAlignment.end, // Alinhar à esquerda
                       children: [
