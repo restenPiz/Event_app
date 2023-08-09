@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../models/event.dart';
+
 class DatabaseHelper {
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
   static Database? _database;
@@ -36,14 +38,17 @@ class DatabaseHelper {
 
   // CRUD operations
 
-  Future<int> insertEvent(Map<String, dynamic> row) async {
+  Future<int> insertEvent(Event event) async {
     Database db = await instance.database;
-    return await db.insert('Event', row);
+    return await db.insert('Event', event.toMap());
   }
 
-  Future<List<Map<String, dynamic>>> queryAllEvents() async {
+  Future<List<Event>> queryAllEvents() async {
     Database db = await instance.database;
-    return await db.query('Event');
+    List<Map<String, dynamic>> maps = await db.query('Event');
+    return List.generate(maps.length, (index) {
+      return Event.fromMap(maps[index]);
+    });
   }
 
   Future<int> updateEvent(Map<String, dynamic> row) async {

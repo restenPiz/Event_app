@@ -15,7 +15,7 @@ class _CounterState extends State<Counter> {
   final TextEditingController _nomeController =TextEditingController();
   final TextEditingController _descricaoController =TextEditingController();
 
-  //*Inicio do metodo responsavel por printar o modal
+  //*Inicio modal de adicao dos dados
   void _openModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
