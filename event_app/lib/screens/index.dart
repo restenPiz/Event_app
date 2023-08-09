@@ -19,7 +19,7 @@ class index extends StatelessWidget {
           //*Inicio da coluna que e responsavel por colocar todas as cards
           child: Column(
             children: [
-              //?Inicio das cards do meu aplicativo
+              //*Inicio da card do aplicativo
               Card(
                 elevation: 4,
                 shape: RoundedRectangleBorder(
@@ -44,7 +44,9 @@ class index extends StatelessWidget {
                             icon: Icon(Icons.edit),
                             color: Colors.blue,
                             onPressed: () {
-                              // Lógica de edição
+
+                              //!Inicio do link de redirecionamento
+
                             },
                           ),
                         ),
@@ -55,7 +57,9 @@ class index extends StatelessWidget {
                             icon: Icon(Icons.delete),
                             color: Colors.red,
                             onPressed: () {
-                              // Lógica de exclusão
+                              
+                              //!Inicio do link de redirecionamento
+
                             },
                           ),
                         ),
@@ -71,7 +75,7 @@ class index extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             
-            //!Inicio do link de redirecionamenot
+            //!Inicio do link de redirecionamento
             Navigator.of(context).pop();
             addEvent();
 
