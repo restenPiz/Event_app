@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-import 'package:event_app/screens/addEvent.dart';
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
@@ -19,6 +18,7 @@ class index extends StatelessWidget {
           //*Inicio da coluna que e responsavel por colocar todas as cards
           child: Column(
             children: [
+              //?Inicio das cards do meu aplicativo
               Card(
                 elevation: 4,
                 shape: RoundedRectangleBorder(
@@ -69,9 +69,8 @@ class index extends StatelessWidget {
         //*Adicionando o butao responsavel por fazer criar o evento
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            
-            //!Inicio da parte contendo o Navigator para redirecionamento
-            
+            //?Inicio do link de redirecionamento
+            Navigator.pushNamed(context, 'addEvent'); 
           },
           child: Icon(Icons.add),
           backgroundColor: Colors.yellow,
