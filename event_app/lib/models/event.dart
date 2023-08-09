@@ -1,27 +1,30 @@
-class Event{
+class Event {
 
-  //*Declarando as variaveis
-  int id;
-  String nome;
-  String descricao;
+  //*Declarando as variaveis do applicativo  
+  final int id;
+  final String nome;
+  final String descricao;
 
   //*Inicio do metodo construtor
-  Event({this.id, this.nome, this.descricao});
+  Event({
+    required this.id,
+    required this.nome,
+    required this.descricao,
+  });
 
-  Map<String, dynamic> toMap(){
-    return{
-      'id':id,
-      'nome':nome,
-      'descricao':descricao,
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'nome': nome,
+      'descricao': descricao,
     };
   }
 
-  factory Event.fromMap(Map<String, dynamic>map){
+  static Event fromMap(Map<String, dynamic> map) {
     return Event(
-      id:map['id'],
-      nome:map['nome'],
-      descricao:map['descricao'],
+      id: map['id'],
+      nome: map['nome'],
+      descricao: map['descricao'],
     );
   }
-
 }
