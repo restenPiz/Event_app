@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 
@@ -57,13 +57,37 @@ class _CounterState extends State<Counter> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Modal Title'),
-          content: Text('This is a modal content.'),
+          content: Container(
+            width: MediaQuery.of(context).size.width * 0.8, //? Definindo a largura
+            height: MediaQuery.of(context).size.height * 0.2, //? Definindo a altura
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                TextField(
+                  decoration: InputDecoration(labelText: 'Nome do Evento'),
+                ),
+                Container(
+                  height: 20,
+                ),
+                TextField(
+                  decoration: InputDecoration(labelText: 'Descricao do Evento'),
+                ),
+              ],
+            ),
+          ),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
               child: Text('Close'),
+            ),
+            TextButton(
+              onPressed: () {
+                // Process and save data
+                Navigator.of(context).pop();
+              },
+              child: Text('Save'),
             ),
           ],
         );
