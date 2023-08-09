@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+import 'package:event_app/screens/addEvent.dart';
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
@@ -69,8 +70,11 @@ class index extends StatelessWidget {
         //*Adicionando o butao responsavel por fazer criar o evento
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            //?Inicio do link de redirecionamento
-            Navigator.pushNamed(context, 'addEvent'); 
+            
+            //!Inicio do link de redirecionamenot
+            Navigator.of(context).pop();
+            addEvent();
+            
           },
           child: Icon(Icons.add),
           backgroundColor: Colors.yellow,
