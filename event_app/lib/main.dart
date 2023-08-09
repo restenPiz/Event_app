@@ -11,6 +11,10 @@ class Counter extends StatefulWidget {
 
 class _CounterState extends State<Counter> {
   
+  //!Inico da declaracao de todos os campos de input
+  final TextEditingController _nomeController =TextEditingController();
+  final TextEditingController _descricaoController =TextEditingController();
+
   //*Inicio do metodo responsavel por printar o modal
   void _openModal(BuildContext context) {
     showModalBottomSheet(
