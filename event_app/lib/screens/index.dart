@@ -80,8 +80,7 @@ class index extends StatelessWidget {
           onPressed: () {
             
             //!Inicio do link de redirecionamento
-            Navigator.of(context).pop();
-            addEvent();
+            
 
           },
           child: Icon(Icons.add),
