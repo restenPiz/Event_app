@@ -44,7 +44,10 @@ class _CounterState extends State<Counter> {
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: ()=>_addEvent(context),
+                onPressed: () {
+                  _addEvent(context);
+                  Navigator.pop(context);
+                },
                 child: Text('Salvar'),
               ),
             ],
