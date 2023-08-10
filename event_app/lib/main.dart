@@ -105,12 +105,7 @@ class _CounterState extends State<Counter> {
   //!Inicio do metodo responsavel por adicionar os dados
   void _addEvent(BuildContext context) async {
 
-    if(_nomeController.text.trim().isEmpty) return;
-
-    Event newEvent=Event( nome: _nomeController.text, descricao: _descricaoController.text, id: 1);
-    await DatabaseHelper.instance.insertEvent(newEvent);
-
-    Navigator.pop(context);
+    print('Ola Mundo');
 
   }
 
