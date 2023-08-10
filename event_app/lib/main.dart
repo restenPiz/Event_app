@@ -108,8 +108,24 @@ class _CounterState extends State<Counter> {
   //!Inicio do metodo responsavel por adicionar os dados
   void _addEvent(BuildContext context) async {
 
-    print('Ola Mundo');
+    final nome = _nomeController.text;
+    final descricao = _descricaoController.text;
 
+    if (nome.isNotEmpty && descricao.isNotEmpty) {
+      final event = Event(nome: nome, descricao: descricao, id: 0);
+
+      int insertedId = await DatabaseHelper.instance.insertEvent(event);
+      if (insertedId > 0) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Event inserted with ID: $insertedId')),
+        );
+        Navigator.pop(context);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error inserting event')),
+        );
+      }
+    }
   }
 
   @override
