@@ -34,10 +34,12 @@ class _CounterState extends State<Counter> {
                   fontSize: 18,
                 ),
               ),
+              //*Inicio do campo de input
               TextFormField(
                 controller: _nomeController,
                 decoration: InputDecoration(labelText: 'Nome do Evento'),
               ),
+              //*Inicio do campo de input
               TextFormField(
                 controller: _descricaoController,
                 decoration: InputDecoration(labelText: 'Descrição do Evento'),
@@ -212,8 +214,14 @@ class _CounterState extends State<Counter> {
     );
   }
 }
+void main() async {
 
-void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Inicializa o banco de dados
+  DatabaseHelper dbHelper = DatabaseHelper.instance;
+  await dbHelper.database; 
+
   runApp(
     const MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -225,3 +233,4 @@ void main() {
     ),
   );
 }
+
