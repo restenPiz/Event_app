@@ -216,12 +216,6 @@ class _CounterState extends State<Counter> {
 }
 void main() async {
 
-  WidgetsFlutterBinding.ensureInitialized();
-
-  // Inicializa o banco de dados
-  DatabaseHelper dbHelper = DatabaseHelper.instance;
-  await dbHelper.database; 
-
   runApp(
     const MaterialApp(
       debugShowCheckedModeBanner: false,
