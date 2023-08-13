@@ -73,6 +73,8 @@ class _CounterState extends State<Counter> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
+
+                //*Inicio dos inputs que fazem parte do app
                 TextField(
                   controller: _nomeController,
                   decoration: InputDecoration(labelText: 'Nome do Evento'),
@@ -214,6 +216,8 @@ class _CounterState extends State<Counter> {
     );
   }
 }
+
+//!Inicio do metodo principal do aplicativo
 void main() async {
 
   runApp(
