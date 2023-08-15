@@ -37,12 +37,12 @@ class _CounterState extends State<Counter> {
               //*Inicio do campo de input
               TextFormField(
                 controller: _nomeController,
-                decoration: InputDecoration(labelText: 'Nome do Evento'),
+                decoration: InputDecoration(labelText: 'Digite o Nome:'),
               ),
               //*Inicio do campo de input
               TextFormField(
                 controller: _descricaoController,
-                decoration: InputDecoration(labelText: 'Descrição do Evento'),
+                decoration: InputDecoration(labelText: 'Descrição do Evento:'),
               ),
               SizedBox(height: 20),
               ElevatedButton(
