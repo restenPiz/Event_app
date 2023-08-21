@@ -31,7 +31,7 @@ class DatabaseHelper {
       CREATE TABLE Event(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT,
-        descricao TEXT
+        descricao TEXT,
       )
     ''');
   }
