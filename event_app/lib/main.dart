@@ -354,6 +354,7 @@ class _TruckListScreenState extends State<TruckListScreen> {
         icon: Icon(Icons.add),
         label: Text('Adicionar Camião'),
         backgroundColor: Colors.blue[800],
+        foregroundColor: Colors.white,
       ),
     );
   }
