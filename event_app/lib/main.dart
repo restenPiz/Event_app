@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:event_app/models/truck.dart';
 import 'package:flutter/material.dart';
 import 'helpers/database_helper.dart';
-import 'models/Truck.dart';
+import 'models/Truck.dart' hide Truck;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,7 +53,7 @@ class _TruckListScreenState extends State<TruckListScreen> {
     setState(() => _isLoading = true);
     final trucks = await DatabaseHelper.instance.queryAllTrucks();
     setState(() {
-      _trucks = trucks;
+      _trucks = trucks.cast<Truck>();
       _isLoading = false;
     });
   }
@@ -460,12 +461,14 @@ class _TruckFormModalState extends State<TruckFormModal> {
       );
 
       if (widget.truck == null) {
-        await DatabaseHelper.instance.insertTruck(truck);
+        // ignore: unnecessary_cast
+        await DatabaseHelper.instance.insertTruck(truck as Truck);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Camião adicionado com sucesso!')),
         );
       } else {
-        await DatabaseHelper.instance.updateTruck(truck);
+        // ignore: unnecessary_cast
+        await DatabaseHelper.instance.insertTruck(truck as Truck);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Camião atualizado com sucesso!')),
         );

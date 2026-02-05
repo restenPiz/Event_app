@@ -8,6 +8,7 @@ class Truck {
   final String status; // 'Ativo', 'Manutenção', 'Inativo'
   final double quilometragem;
   final String? observacoes;
+  final String? fotoPath; // Caminho da foto do camião
 
   Truck({
     this.id,
@@ -19,6 +20,7 @@ class Truck {
     required this.status,
     required this.quilometragem,
     this.observacoes,
+    this.fotoPath,
   });
 
   Map<String, dynamic> toMap() {
@@ -32,6 +34,7 @@ class Truck {
       'status': status,
       'quilometragem': quilometragem,
       'observacoes': observacoes,
+      'fotoPath': fotoPath,
     };
   }
 
@@ -46,6 +49,7 @@ class Truck {
       status: map['status'],
       quilometragem: map['quilometragem'],
       observacoes: map['observacoes'],
+      fotoPath: map['fotoPath'],
     );
   }
 }
