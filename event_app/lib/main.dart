@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:event_app/models/truck.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 import 'helpers/database_helper.dart';
-import 'models/Truck.dart' hide Truck;
+import 'models/truck.dart';
+import 'screens/truck_detail_screen.dart';
+import 'services/relatorio_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,7 +55,7 @@ class _TruckListScreenState extends State<TruckListScreen> {
     setState(() => _isLoading = true);
     final trucks = await DatabaseHelper.instance.queryAllTrucks();
     setState(() {
-      _trucks = trucks.cast<Truck>();
+      _trucks = trucks;
       _isLoading = false;
     });
   }
@@ -87,12 +89,22 @@ class _TruckListScreenState extends State<TruckListScreen> {
     );
   }
 
+  void _openTruckDetails(Truck truck) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => TruckDetailScreen(truck: truck),
+      ),
+    ).then((_) => _loadTrucks());
+  }
+
   Future<void> _deleteTruck(int id, String matricula) async {
     final confirm = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
         title: Text('Confirmar Eliminação'),
-        content: Text('Deseja eliminar o camião $matricula?'),
+        content: Text(
+            'Deseja eliminar o camião $matricula?\n\nIsto também eliminará todo o histórico de manutenções e abastecimentos.'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
@@ -113,6 +125,86 @@ class _TruckListScreenState extends State<TruckListScreen> {
         SnackBar(content: Text('Camião eliminado com sucesso')),
       );
       _loadTrucks();
+    }
+  }
+
+  // ========== EXPORTAÇÃO DE RELATÓRIOS ==========
+
+  Future<void> _exportarPDF() async {
+    try {
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CircularProgressIndicator(color: Colors.white),
+              SizedBox(height: 16),
+              Text('Gerando relatório PDF...',
+                  style: TextStyle(color: Colors.white)),
+            ],
+          ),
+        ),
+      );
+
+      final pdfPath = await RelatorioService.gerarRelatorioPDF();
+      Navigator.pop(context); // Fechar loading
+
+      await Share.shareXFiles(
+        [XFile(pdfPath)],
+        subject: 'Relatório TRUCK - ${DateTime.now().toString().split(' ')[0]}',
+      );
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('✅ Relatório PDF gerado com sucesso!')),
+      );
+    } catch (e) {
+      Navigator.pop(context); // Fechar loading
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Text('❌ Erro ao gerar PDF: $e'),
+            backgroundColor: Colors.red),
+      );
+    }
+  }
+
+  Future<void> _exportarExcel() async {
+    try {
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CircularProgressIndicator(color: Colors.white),
+              SizedBox(height: 16),
+              Text('Gerando relatório Excel...',
+                  style: TextStyle(color: Colors.white)),
+            ],
+          ),
+        ),
+      );
+
+      final excelPath = await RelatorioService.gerarRelatorioExcel();
+      Navigator.pop(context); // Fechar loading
+
+      await Share.shareXFiles(
+        [XFile(excelPath)],
+        subject: 'Relatório TRUCK - ${DateTime.now().toString().split(' ')[0]}',
+      );
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('✅ Relatório Excel gerado com sucesso!')),
+      );
+    } catch (e) {
+      Navigator.pop(context); // Fechar loading
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Text('❌ Erro ao gerar Excel: $e'),
+            backgroundColor: Colors.red),
+      );
     }
   }
 
@@ -154,8 +246,43 @@ class _TruckListScreenState extends State<TruckListScreen> {
           ],
         ),
         actions: [
+          // Botão de Exportação
+          PopupMenuButton<String>(
+            icon: Icon(Icons.download),
+            tooltip: 'Exportar Relatórios',
+            onSelected: (value) async {
+              if (value == 'pdf') {
+                await _exportarPDF();
+              } else if (value == 'excel') {
+                await _exportarExcel();
+              }
+            },
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: 'pdf',
+                child: Row(
+                  children: [
+                    Icon(Icons.picture_as_pdf, color: Colors.red),
+                    SizedBox(width: 12),
+                    Text('Exportar PDF'),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                value: 'excel',
+                child: Row(
+                  children: [
+                    Icon(Icons.table_chart, color: Colors.green),
+                    SizedBox(width: 12),
+                    Text('Exportar Excel'),
+                  ],
+                ),
+              ),
+            ],
+          ),
           IconButton(
             icon: Icon(Icons.refresh),
+            tooltip: 'Atualizar',
             onPressed: _loadTrucks,
           ),
         ],
@@ -197,7 +324,7 @@ class _TruckListScreenState extends State<TruckListScreen> {
                         ),
                         child: InkWell(
                           borderRadius: BorderRadius.circular(12),
-                          onTap: () => _openEditTruckModal(truck),
+                          onTap: () => _openTruckDetails(truck),
                           child: Padding(
                             padding: EdgeInsets.all(16),
                             child: Column(
@@ -324,6 +451,12 @@ class _TruckListScreenState extends State<TruckListScreen> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
+                                    TextButton.icon(
+                                      onPressed: () => _openTruckDetails(truck),
+                                      icon: Icon(Icons.visibility, size: 18),
+                                      label: Text('Ver Detalhes'),
+                                    ),
+                                    SizedBox(width: 8),
                                     TextButton.icon(
                                       onPressed: () =>
                                           _openEditTruckModal(truck),
@@ -458,17 +591,16 @@ class _TruckFormModalState extends State<TruckFormModal> {
         observacoes: _observacoesController.text.trim().isEmpty
             ? null
             : _observacoesController.text.trim(),
+        fotoPath: widget.truck?.fotoPath, // Preservar foto existente
       );
 
       if (widget.truck == null) {
-        // ignore: unnecessary_cast
-        await DatabaseHelper.instance.insertTruck(truck as Truck);
+        await DatabaseHelper.instance.insertTruck(truck);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Camião adicionado com sucesso!')),
         );
       } else {
-        // ignore: unnecessary_cast
-        await DatabaseHelper.instance.insertTruck(truck as Truck);
+        await DatabaseHelper.instance.updateTruck(truck);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Camião atualizado com sucesso!')),
         );

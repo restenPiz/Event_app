@@ -43,19 +43,26 @@ class _TruckDetailScreenState extends State<TruckDetailScreen>
 
   Future<void> _loadData() async {
     setState(() => _isLoading = true);
-    final manutencoes = await DatabaseHelper.instance
-        .queryManutencoesByTruck(_currentTruck.id!);
-    final abastecimentos = await DatabaseHelper.instance
-        .queryAbastecimentosByTruck(_currentTruck.id!);
-    final truck =
-        await DatabaseHelper.instance.queryTruckById(_currentTruck.id!);
+    try {
+      final manutencoes = await DatabaseHelper.instance
+          .queryManutencoesByTruck(_currentTruck.id!);
+      final abastecimentos = await DatabaseHelper.instance
+          .queryAbastecimentosByTruck(_currentTruck.id!);
+      final truck =
+          await DatabaseHelper.instance.queryTruckById(_currentTruck.id!);
 
-    setState(() {
-      _manutencoes = manutencoes;
-      _abastecimentos = abastecimentos;
-      if (truck != null) _currentTruck = truck;
-      _isLoading = false;
-    });
+      setState(() {
+        _manutencoes = manutencoes;
+        _abastecimentos = abastecimentos;
+        if (truck != null) _currentTruck = truck;
+        _isLoading = false;
+      });
+    } catch (e) {
+      setState(() => _isLoading = false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Erro ao carregar dados: $e')),
+      );
+    }
   }
 
   Future<void> _pickImage() async {
