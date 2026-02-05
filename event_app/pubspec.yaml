@@ -12,6 +12,12 @@ dependencies:
   sqflite: ^2.3.2
   path: ^1.8.0
   intl: ^0.17.0
+  pdf: ^3.10.7
+  excel: ^4.0.2
+  image_picker: ^1.0.7
+  path_provider: ^2.1.2
+  share_plus: ^7.2.1
+  permission_handler: ^11.2.0
 
 dev_dependencies:
   flutter_test:
