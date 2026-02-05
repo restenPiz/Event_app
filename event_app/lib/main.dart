@@ -19,7 +19,7 @@ class TruckApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'TRUCK - Gestão de Frotas',
+      title: 'TRUCK - APP',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: Colors.grey[100],
@@ -90,6 +90,12 @@ class _TruckListScreenState extends State<TruckListScreen> {
   }
 
   void _openTruckDetails(Truck truck) {
+    if (truck.id == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Erro: ID do camião não encontrado')),
+      );
+      return;
+    }
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -242,7 +248,7 @@ class _TruckListScreenState extends State<TruckListScreen> {
           children: [
             Icon(Icons.local_shipping, size: 28),
             SizedBox(width: 10),
-            Text('TRUCK - Gestão de Frotas'),
+            Text('TRUCK - APP'),
           ],
         ),
         actions: [
@@ -447,7 +453,7 @@ class _TruckListScreenState extends State<TruckListScreen> {
                                     ),
                                   ),
                                 ],
-                                SizedBox(height: 12),
+                                SizedBox(height: 10),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
@@ -456,14 +462,12 @@ class _TruckListScreenState extends State<TruckListScreen> {
                                       icon: Icon(Icons.visibility, size: 18),
                                       label: Text('Ver Detalhes'),
                                     ),
-                                    SizedBox(width: 8),
                                     TextButton.icon(
                                       onPressed: () =>
                                           _openEditTruckModal(truck),
                                       icon: Icon(Icons.edit, size: 18),
                                       label: Text('Editar'),
                                     ),
-                                    SizedBox(width: 8),
                                     TextButton.icon(
                                       onPressed: () => _deleteTruck(
                                           truck.id!, truck.matricula),
