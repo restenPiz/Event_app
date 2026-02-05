@@ -1,8 +1,7 @@
 import 'dart:async';
+import 'package:event_app/models/Truck.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-
-import '../models/event.dart';
 
 class DatabaseHelper {
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
@@ -12,7 +11,6 @@ class DatabaseHelper {
 
   Future<Database> get database async {
     if (_database != null) return _database!;
-
     _database = await _initDatabase();
     return _database!;
   }
@@ -20,7 +18,7 @@ class DatabaseHelper {
   Future<Database> _initDatabase() async {
     final String dbPath = await getDatabasesPath();
     return openDatabase(
-      join(dbPath, 'events.db'),
+      join(dbPath, 'trucks.db'),
       onCreate: _onCreate,
       version: 1,
     );
@@ -28,37 +26,77 @@ class DatabaseHelper {
 
   Future<void> _onCreate(Database db, int version) async {
     await db.execute('''
-      CREATE TABLE Event(
+      CREATE TABLE Truck(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nome TEXT,
-        descricao TEXT,
+        matricula TEXT NOT NULL,
+        marca TEXT NOT NULL,
+        modelo TEXT NOT NULL,
+        ano INTEGER NOT NULL,
+        motorista TEXT NOT NULL,
+        status TEXT NOT NULL,
+        quilometragem REAL NOT NULL,
+        observacoes TEXT
       )
     ''');
   }
 
-  // CRUD operations
+  // CRUD Operations
 
-  Future<int> insertEvent(Event event) async {
+  Future<int> insertTruck(Truck truck) async {
     Database db = await instance.database;
-    return await db.insert('Event', event.toMap());
+    return await db.insert('Truck', truck.toMap());
   }
 
-  Future<List<Event>> queryAllEvents() async {
+  Future<List<Truck>> queryAllTrucks() async {
     Database db = await instance.database;
-    List<Map<String, dynamic>> maps = await db.query('Event');
+    List<Map<String, dynamic>> maps =
+        await db.query('Truck', orderBy: 'id DESC');
     return List.generate(maps.length, (index) {
-      return Event.fromMap(maps[index]);
+      return Truck.fromMap(maps[index]);
     });
   }
 
-  Future<int> updateEvent(Map<String, dynamic> row) async {
+  Future<Truck?> queryTruckById(int id) async {
     Database db = await instance.database;
-    int id = row['id'];
-    return await db.update('Event', row, where: 'id = ?', whereArgs: [id]);
+    List<Map<String, dynamic>> maps = await db.query(
+      'Truck',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+    if (maps.isNotEmpty) {
+      return Truck.fromMap(maps.first);
+    }
+    return null;
   }
 
-  Future<int> deleteEvent(int id) async {
+  Future<int> updateTruck(Truck truck) async {
     Database db = await instance.database;
-    return await db.delete('Event', where: 'id = ?', whereArgs: [id]);
+    return await db.update(
+      'Truck',
+      truck.toMap(),
+      where: 'id = ?',
+      whereArgs: [truck.id],
+    );
+  }
+
+  Future<int> deleteTruck(int id) async {
+    Database db = await instance.database;
+    return await db.delete('Truck', where: 'id = ?', whereArgs: [id]);
+  }
+
+  // Estatísticas
+  Future<Map<String, int>> getStatusCount() async {
+    Database db = await instance.database;
+    List<Map<String, dynamic>> result = await db.rawQuery('''
+      SELECT status, COUNT(*) as count 
+      FROM Truck 
+      GROUP BY status
+    ''');
+
+    Map<String, int> statusCount = {};
+    for (var row in result) {
+      statusCount[row['status']] = row['count'];
+    }
+    return statusCount;
   }
 }
