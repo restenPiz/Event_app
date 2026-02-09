@@ -81,6 +81,37 @@ class DatabaseHelper {
     if (oldVersion < 2) {
       // Adicionar coluna fotoPath se não existir
       await db.execute('ALTER TABLE Truck ADD COLUMN fotoPath TEXT');
+
+      // Criar tabelas que não existiam na versão 1
+      await db.execute('''
+      CREATE TABLE Manutencao(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        truckId INTEGER NOT NULL,
+        tipo TEXT NOT NULL,
+        descricao TEXT NOT NULL,
+        custo REAL NOT NULL,
+        data TEXT NOT NULL,
+        oficina TEXT,
+        quilometragem INTEGER,
+        proximaManutencao TEXT,
+        FOREIGN KEY (truckId) REFERENCES Truck (id) ON DELETE CASCADE
+      )
+    ''');
+
+      await db.execute('''
+      CREATE TABLE Abastecimento(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        truckId INTEGER NOT NULL,
+        litros REAL NOT NULL,
+        precoLitro REAL NOT NULL,
+        custoTotal REAL NOT NULL,
+        data TEXT NOT NULL,
+        quilometragem INTEGER,
+        posto TEXT,
+        tipoCombustivel TEXT,
+        FOREIGN KEY (truckId) REFERENCES Truck (id) ON DELETE CASCADE
+      )
+    ''');
     }
   }
 
@@ -171,8 +202,6 @@ class DatabaseHelper {
     Database db = await instance.database;
     return await db.delete('Manutencao', where: 'id = ?', whereArgs: [id]);
   }
-
-  // ==================== CRUD ABASTECIMENTOS ====================
 
   Future<int> insertAbastecimento(Abastecimento abastecimento) async {
     Database db = await instance.database;
