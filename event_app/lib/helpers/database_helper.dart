@@ -159,8 +159,6 @@ class DatabaseHelper {
     return await db.delete('Truck', where: 'id = ?', whereArgs: [id]);
   }
 
-  // ==================== CRUD MANUTENÇÕES ====================
-
   Future<int> insertManutencao(Manutencao manutencao) async {
     Database db = await instance.database;
     return await db.insert('Manutencao', manutencao.toMap());
