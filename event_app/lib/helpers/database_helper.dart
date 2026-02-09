@@ -186,6 +186,8 @@ class DatabaseHelper {
     });
   }
 
+  //Doing some updates in the application
+
   Future<int> updateManutencao(Manutencao manutencao) async {
     Database db = await instance.database;
     return await db.update(
