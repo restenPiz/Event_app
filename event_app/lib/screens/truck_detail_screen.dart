@@ -114,9 +114,18 @@ class _TruckDetailScreenState extends State<TruckDetailScreen>
         bottom: TabBar(
           controller: _tabController,
           tabs: [
-            Tab(icon: Icon(Icons.info), text: 'Informações'),
-            Tab(icon: Icon(Icons.build), text: 'Manutenções'),
-            Tab(icon: Icon(Icons.local_gas_station), text: 'Abastecimentos'),
+            Tab(
+                icon: Icon(Icons.info, color: Colors.white),
+                child:
+                    Text('Informações', style: TextStyle(color: Colors.white))),
+            Tab(
+                icon: Icon(Icons.build, color: Colors.white),
+                child:
+                    Text('Manutenções', style: TextStyle(color: Colors.white))),
+            Tab(
+                icon: Icon(Icons.local_gas_station, color: Colors.white),
+                child: Text('Abastecimentos',
+                    style: TextStyle(color: Colors.white))),
           ],
         ),
       ),
