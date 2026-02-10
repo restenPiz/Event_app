@@ -29,7 +29,73 @@ class TruckApp extends StatelessWidget {
           foregroundColor: Colors.white,
         ),
       ),
-      home: TruckListScreen(),
+      home: const SplashScreen(),
+    );
+  }
+}
+
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _initAndNavigate();
+  }
+
+  Future<void> _initAndNavigate() async {
+    // Ensure DB is initialized before navigating (optional but helpful)
+    try {
+      await DatabaseHelper.instance.database;
+    } catch (_) {
+      // ignore any db init errors here; app will handle later
+    }
+
+    // Keep splash visible briefly
+    await Future.delayed(const Duration(milliseconds: 1200));
+
+    if (!mounted) return;
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (_) => const TruckListScreen()),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.blue[800],
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.local_shipping, size: 84, color: Colors.white),
+            const SizedBox(height: 12),
+            const Text(
+              'TRUCK - APP',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                letterSpacing: 1.2,
+              ),
+            ),
+            const SizedBox(height: 18),
+            const SizedBox(
+              width: 28,
+              height: 28,
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                strokeWidth: 2.8,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -636,8 +702,7 @@ class _TruckFormModalState extends State<TruckFormModal> {
                       value?.isEmpty ?? true ? 'Campo obrigatório' : null,
                 ),
                 SizedBox(height: 16),
-                // Replace the two Row widgets with this (removing prefixIcon):
-
+                // Compact paired fields (removed prefixIcon to avoid overflow)
                 Row(
                   children: [
                     Expanded(
