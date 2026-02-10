@@ -252,40 +252,6 @@ class _TruckListScreenState extends State<TruckListScreen> {
           ],
         ),
         actions: [
-          // Botão de Exportação
-          // PopupMenuButton<String>(
-          //   icon: Icon(Icons.download),
-          //   tooltip: 'Exportar Relatórios',
-          //   onSelected: (value) async {
-          //     if (value == 'pdf') {
-          //       await _exportarPDF();
-          //     } else if (value == 'excel') {
-          //       await _exportarExcel();
-          //     }
-          //   },
-          //   itemBuilder: (context) => [
-          //     PopupMenuItem(
-          //       value: 'pdf',
-          //       child: Row(
-          //         children: [
-          //           Icon(Icons.picture_as_pdf, color: Colors.red),
-          //           SizedBox(width: 12),
-          //           Text('Exportar PDF'),
-          //         ],
-          //       ),
-          //     ),
-          //     PopupMenuItem(
-          //       value: 'excel',
-          //       child: Row(
-          //         children: [
-          //           Icon(Icons.table_chart, color: Colors.green),
-          //           SizedBox(width: 12),
-          //           Text('Exportar Excel'),
-          //         ],
-          //       ),
-          //     ),
-          //   ],
-          // ),
           IconButton(
             icon: Icon(Icons.refresh),
             tooltip: 'Atualizar',
