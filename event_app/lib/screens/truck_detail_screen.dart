@@ -44,10 +44,10 @@ class _TruckDetailScreenState extends State<TruckDetailScreen>
   Future<void> _loadData() async {
     setState(() => _isLoading = true);
     try {
-      final manutencoes = await DatabaseHelper.instance
-          .queryManutencoesByTruck(_currentTruck.id!);
+      final manutencoes =
+          await DatabaseHelper.instance.queryManutencoesByTruck(_currentTruck);
       final abastecimentos = await DatabaseHelper.instance
-          .queryAbastecimentosByTruck(_currentTruck.id!);
+          .queryAbastecimentosByTruck(_currentTruck);
       final truck =
           await DatabaseHelper.instance.queryTruckById(_currentTruck.id!);
 

@@ -164,7 +164,7 @@ class DatabaseHelper {
     return await db.insert('Manutencao', manutencao.toMap());
   }
 
-  Future<List<Manutencao>> queryManutencoesByTruck(int truckId) async {
+  Future<List<Manutencao>> queryManutencoesByTruck(Truck truckId) async {
     Database db = await instance.database;
     List<Map<String, dynamic>> maps = await db.query(
       'Manutencao',
@@ -208,7 +208,7 @@ class DatabaseHelper {
     return await db.insert('Abastecimento', abastecimento.toMap());
   }
 
-  Future<List<Abastecimento>> queryAbastecimentosByTruck(int truckId) async {
+  Future<List<Abastecimento>> queryAbastecimentosByTruck(Truck truckId) async {
     Database db = await instance.database;
     List<Map<String, dynamic>> maps = await db.query(
       'Abastecimento',
