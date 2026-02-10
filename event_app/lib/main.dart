@@ -602,14 +602,17 @@ class _TruckFormModalState extends State<TruckFormModal> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      widget.truck == null
-                          ? 'Adicionar Camião'
-                          : 'Editar Camião',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue[800],
+                    Expanded(
+                      // Add this
+                      child: Text(
+                        widget.truck == null
+                            ? 'Adicionar Camião'
+                            : 'Editar Camião',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue[800],
+                        ),
                       ),
                     ),
                     IconButton(
@@ -633,6 +636,8 @@ class _TruckFormModalState extends State<TruckFormModal> {
                       value?.isEmpty ?? true ? 'Campo obrigatório' : null,
                 ),
                 SizedBox(height: 16),
+                // Replace the two Row widgets with this (removing prefixIcon):
+
                 Row(
                   children: [
                     Expanded(
@@ -640,25 +645,29 @@ class _TruckFormModalState extends State<TruckFormModal> {
                         controller: _marcaController,
                         decoration: InputDecoration(
                           labelText: 'Marca *',
-                          prefixIcon: Icon(Icons.business),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
+                          isDense: true,
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 12),
                         ),
                         validator: (value) =>
                             value?.isEmpty ?? true ? 'Campo obrigatório' : null,
                       ),
                     ),
-                    SizedBox(width: 12),
+                    SizedBox(width: 8),
                     Expanded(
                       child: TextFormField(
                         controller: _modeloController,
                         decoration: InputDecoration(
                           labelText: 'Modelo *',
-                          prefixIcon: Icon(Icons.local_shipping),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
+                          isDense: true,
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 12),
                         ),
                         validator: (value) =>
                             value?.isEmpty ?? true ? 'Campo obrigatório' : null,
@@ -674,10 +683,12 @@ class _TruckFormModalState extends State<TruckFormModal> {
                         controller: _anoController,
                         decoration: InputDecoration(
                           labelText: 'Ano *',
-                          prefixIcon: Icon(Icons.calendar_today),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
+                          isDense: true,
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 12),
                         ),
                         keyboardType: TextInputType.number,
                         validator: (value) {
@@ -691,16 +702,18 @@ class _TruckFormModalState extends State<TruckFormModal> {
                         },
                       ),
                     ),
-                    SizedBox(width: 12),
+                    SizedBox(width: 8),
                     Expanded(
                       child: DropdownButtonFormField<String>(
                         value: _selectedStatus,
                         decoration: InputDecoration(
                           labelText: 'Status *',
-                          prefixIcon: Icon(Icons.circle),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
+                          isDense: true,
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 12),
                         ),
                         items: ['Ativo', 'Manutenção', 'Inativo']
                             .map((status) => DropdownMenuItem(
