@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:event_app/models/manuntencao.dart';
+import 'package:event_app/models/Manuntencao.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import '../models/truck.dart';

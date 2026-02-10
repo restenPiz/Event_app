@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:event_app/models/manuntencao.dart';
+import 'package:event_app/models/Manuntencao.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../helpers/database_helper.dart';

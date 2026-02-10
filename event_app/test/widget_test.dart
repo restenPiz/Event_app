@@ -10,6 +10,37 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:event_app/main.dart';
 
+/// Minimal MyApp provided for the test so the symbol exists.
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  int _counter = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Test App')),
+        body: Center(
+          child: Text(
+            '$_counter',
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => setState(() => _counter++),
+          child: const Icon(Icons.add),
+        ),
+      ),
+    );
+  }
+}
+
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.

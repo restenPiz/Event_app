@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:event_app/models/abastecimento.dart';
-import 'package:event_app/models/manuntencao.dart';
+import 'package:event_app/models/Manuntencao.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
